@@ -9,7 +9,15 @@ class PostsService {
     const response = await api.get('api/posts')
     const posts = response.data.posts.map(postPojo => new Post(postPojo))
     AppState.posts = posts
-    AppState.currentPage = response.data.currentPage
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
+  }
+
+  async changePage(pageNumber) {
+    const response = await api.get(`api/posts?page=${pageNumber}`)
+    const posts = response.data.posts.map(postPojo => new Post(postPojo))
+    AppState.posts = posts
+    AppState.currentPage = response.data.page
     AppState.totalPages = response.data.totalPages
   }
 

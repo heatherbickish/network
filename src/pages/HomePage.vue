@@ -37,9 +37,28 @@ async function getAds() {
     Pop.meow(error);
   }
 }
+
+async function changePage(pageNumber) {
+  try {
+    await postsService.changePage(pageNumber)
+  }
+  catch (error) {
+    Pop.meow(error);
+  }
+}
+
 </script>
 
 <template>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+      <div class="text-center mb-2">
+        <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5">Older</button>
+        <span></span>
+        <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5">Newer</button>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <section class="row">
       <div v-for="post in posts" :key="post.id" class="col-12">
@@ -54,15 +73,7 @@ async function getAds() {
       </div>
     </section>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="text-center mb-2">
-        <button class="btn btn-outline-info me-5">Older</button>
-        <span></span>
-        <button class="btn btn-outline-info ms-5">Newer</button>
-      </div>
-    </div>
-  </div>
+
 </template>
 
 <style scoped lang="scss"></style>

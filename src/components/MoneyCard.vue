@@ -18,7 +18,7 @@ defineProps({
 
 <template>
   <div class="col-md-3">
-    {{ moneyProp.title }}
+    <!-- {{ moneyProp.title }} -->
 
   </div>
 </template>

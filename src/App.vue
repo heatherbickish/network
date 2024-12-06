@@ -12,6 +12,7 @@ import Navbar from './components/Navbar.vue';
     <router-view />
   </main>
   <footer class="bg-info">
+
   </footer>
 </template>
 

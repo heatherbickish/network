@@ -6,6 +6,7 @@ import { Post } from "@/models/Post.js"
 
 class ProfilesService {
   async getPostsByCreatorId(profileId) {
+    AppState.posts = null
     const response = await api.get(`api/posts/?creatorId=${profileId}`)
     logger.log('got posts by creatorid', response.data)
     const posts = response.data.posts.map(postPojo => new Post(postPojo))
@@ -13,6 +14,7 @@ class ProfilesService {
 
   }
   async getProfileById(profileId) {
+    AppState.activeProfile = null
     const response = await api.get(`api/profiles/${profileId}`)
     const profile = new Account(response.data)
     AppState.activeProfile = profile

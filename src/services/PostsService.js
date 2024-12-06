@@ -9,6 +9,8 @@ class PostsService {
     const response = await api.get('api/posts')
     const posts = response.data.posts.map(postPojo => new Post(postPojo))
     AppState.posts = posts
+    AppState.currentPage = response.data.currentPage
+    AppState.totalPages = response.data.totalPages
   }
 
 }

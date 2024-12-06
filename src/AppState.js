@@ -11,6 +11,8 @@ export const AppState = reactive({
   /** @type {import('./models/MoneyPic.js').Money[]}*/
   moneyPics: [],
   /** @type {import('./models/Account.js').Account} user info from the database*/
-  activeProfile: null
+  activeProfile: null,
+  currentPage: 0,
+  totalPages: 0
 })
 

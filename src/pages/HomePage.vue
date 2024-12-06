@@ -16,6 +16,8 @@ onMounted(() => {
 
 const posts = computed(() => AppState.posts)
 const moneyPics = computed(() => AppState.moneyPics)
+const currentPage = computed(() => AppState.currentPage)
+const totalPages = computed(() => AppState.totalPages)
 
 async function getAllPosts() {
   try {
@@ -52,7 +54,15 @@ async function getAds() {
       </div>
     </section>
   </div>
-
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="text-center mb-2">
+        <button class="btn btn-outline-info me-5">Older</button>
+        <span></span>
+        <button class="btn btn-outline-info ms-5">Newer</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss"></style>

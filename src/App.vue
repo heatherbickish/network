@@ -1,7 +1,21 @@
 <script setup>
+import { onMounted } from "vue";
 import Navbar from './components/Navbar.vue';
-import { AppState } from './AppState.js';
+import { moneyPicsService } from "./services/MoneyPicsService";
+import Pop from "./utils/Pop";
 
+onMounted(() => {
+  getAds()
+})
+
+async function getAds() {
+  try {
+    await moneyPicsService.getAds()
+  }
+  catch (error) {
+    Pop.meow(error);
+  }
+}
 </script>
 
 <template>
@@ -11,13 +25,13 @@ import { AppState } from './AppState.js';
   <main>
     <router-view />
   </main>
-  <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+  <footer class="bg-info">
   </footer>
 </template>
 
 <style lang="scss">
 @import '@/assets/scss/main.scss';
+
 :root {
   --main-height: calc(100vh - 32px - 64px);
 }

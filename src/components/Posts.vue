@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
   <section class="row justify-content-center">
-    <div class="col-md-7 shadow my-3">
+    <div class="col-md-6 shadow my-3 rounded">
       <div class="m-5">
         <img :src="postProp.creator.picture" :alt="postProp.creator.name" class="creator-img">
         <span class="ms-3">{{ postProp.creator.name }}</span>
@@ -20,7 +20,7 @@ const props = defineProps({
         <img :src="postProp.imgUrl" alt="" class="post-img">
       </div>
       <div>
-        <p class="text-end mdi mdi-heart me-5"></p>
+        <p class="text-end text-info mdi mdi-heart me-5"></p>
       </div>
     </div>
   </section>

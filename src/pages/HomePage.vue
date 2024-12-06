@@ -6,9 +6,9 @@ import { logger } from "@/utils/Logger";
 import Pop from "@/utils/Pop";
 import { computed, onMounted } from "vue";
 
-onMounted(() =>
+onMounted(() => {
   getAllPosts()
-)
+})
 
 const posts = computed(() => AppState.posts)
 

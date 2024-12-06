@@ -9,7 +9,6 @@ class PostsService {
     const response = await api.get('api/posts')
     const posts = response.data.posts.map(postPojo => new Post(postPojo))
     AppState.posts = posts
-    logger.log(posts)
   }
 
 }

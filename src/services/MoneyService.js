@@ -1,15 +1,15 @@
 import { logger } from "@/utils/Logger.js"
 import { api } from "./AxiosService.js"
-import { MoneyPic } from "@/models/MoneyPic.js"
 import { AppState } from "@/AppState.js"
+import { Money } from "@/models/MoneyPic.js"
 
-class MoneyPicsService {
+class MoneyService {
   async getAds() {
     const response = await api.get('api/ads')
-    const ads = response.data.map(adPojo => new MoneyPic(adPojo))
+    const ads = response.data.map(adPojo => new Money(adPojo))
     AppState.moneyPics = ads
     logger.log(ads)
   }
 
 }
-export const moneyPicsService = new MoneyPicsService()
+export const moneyService = new MoneyService()

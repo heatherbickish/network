@@ -1,4 +1,4 @@
-export class MoneyPic {
+export class Money {
   constructor(data) {
     this.banner = data.banner
     this.linkUrl = data.linkURL

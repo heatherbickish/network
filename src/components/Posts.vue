@@ -11,8 +11,10 @@ const props = defineProps({
   <section class="row justify-content-center">
     <div class="col-md-6 shadow my-3 rounded">
       <div class="m-5">
-        <img :src="postProp.creator.picture" :alt="postProp.creator.name" class="creator-img">
-        <span class="ms-3">{{ postProp.creator.name }}</span>
+        <router-link :to="{ name: 'Profile', params: { profileId: postProp.creatorId } }">
+          <img :src="postProp.creator.picture" :alt="postProp.creator.name" class="creator-img">
+          <span class="ms-3">{{ postProp.creator.name }}</span>
+        </router-link>
       </div>
       <p class="ms-5">{{ postProp.createdAt.toLocaleDateString() }}</p>
       <p class="ms-5">{{ postProp.body }}</p>
@@ -20,9 +22,10 @@ const props = defineProps({
         <img :src="postProp.imgUrl" alt="" class="post-img">
       </div>
       <div>
-        <p class="text-end text-info mdi mdi-heart me-5"></p>
+        <p class="text-end text-info mdi mdi-heart me-5 mt-2"></p>
       </div>
     </div>
+
   </section>
 </template>
 

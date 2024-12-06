@@ -1,21 +1,7 @@
 <script setup>
-import { onMounted } from "vue";
 import Navbar from './components/Navbar.vue';
-import { moneyPicsService } from "./services/MoneyPicsService";
-import Pop from "./utils/Pop";
 
-onMounted(() => {
-  getAds()
-})
 
-async function getAds() {
-  try {
-    await moneyPicsService.getAds()
-  }
-  catch (error) {
-    Pop.meow(error);
-  }
-}
 </script>
 
 <template>

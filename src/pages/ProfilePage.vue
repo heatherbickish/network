@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from "@/AppState";
+import Posts from "@/components/Posts.vue";
 import { profilesService } from "@/services/ProfilesService";
 import Pop from "@/utils/Pop";
 import { computed, onMounted } from "vue";
@@ -7,14 +8,27 @@ import { useRoute } from "vue-router";
 
 const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
+const posts = computed(() => AppState.posts)
+
 onMounted(() => {
   getProfileById()
+  getPostsByCreatorId()
 })
 
 async function getProfileById() {
   try {
     const profileId = route.params.profileId
     await profilesService.getProfileById(profileId)
+  }
+  catch (error) {
+    Pop.meow(error);
+  }
+}
+
+async function getPostsByCreatorId() {
+  try {
+    const profileId = route.params.profileId
+    await profilesService.getPostsByCreatorId(profileId)
   }
   catch (error) {
     Pop.meow(error);
@@ -51,19 +65,36 @@ async function getProfileById() {
         </div>
         <p class="p-3 mb-3">{{ profile.bio }}</p>
         <p></p>
-
-        <div>
-          <p></p>
+        <div class="text-end mb-3 me-3">
+          <button class="btn btn-outline-info">Edit</button>
         </div>
       </div>
     </div>
+  </section>
+  <section v-for="post in posts" :key="post.id" class="row justify-content-center">
+    <Posts :postProp="post" />
+    <!-- <div class="col-md-6 shadow my-3 rounded">
+
+      <div class="m-5">
+        <img src="" alt="" class="creator-img">
+        <span class="ms-3"></span>
+      </div>
+      <p class="ms-5"></p>
+      <p class="ms-5"></p>
+      <div class="d-flex justify-content-center">
+        <img src="" alt="" class="post-img">
+      </div>
+      <div>
+        <p class="text-end text-info mdi mdi-heart me-5 mt-2"></p>
+      </div>
+    </div> -->
   </section>
 </template>
 
 
 <style lang="scss" scoped>
 .creator-img {
-  height: 20dvh;
+  height: 15dvh;
   aspect-ratio: 1/1;
   border-radius: 50%;
   object-fit: cover;
@@ -76,7 +107,7 @@ async function getProfileById() {
 }
 
 .hero {
-  height: 18dvh;
+  height: 10dvh;
   width: 80dvh;
   object-fit: cover;
 

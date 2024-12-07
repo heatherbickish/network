@@ -59,7 +59,7 @@ async function changePage(pageNumber) {
         <div class="m-5">
           <img :src="profile.picture" class="creator-img ms-3">
           <div>
-            <i v-if="profile.github" class="mdi mdi-school fs-3"></i>
+            <i v-if="profile.graduated" class="mdi mdi-school fs-3"></i>
           </div>
           <div class="ms-3 mt-3">
             <h6>{{ profile.class }}</h6>

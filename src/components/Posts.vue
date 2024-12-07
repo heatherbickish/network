@@ -1,6 +1,9 @@
 <script setup>
 import { AppState } from "@/AppState";
 import { Post } from "@/models/Post";
+import { postsService } from "@/services/PostsService";
+import { logger } from "@/utils/Logger";
+import Pop from "@/utils/Pop";
 import { computed } from "vue";
 
 const props = defineProps({
@@ -8,6 +11,18 @@ const props = defineProps({
 })
 
 const account = computed(() => AppState.account)
+
+async function deletePost() {
+  try {
+    const confirmed = await Pop.confirm('Are you sure what want to delete your post?')
+    if (!confirmed) { return }
+    const postId = props.postProp.id
+    await postsService.deletePost(postId)
+  }
+  catch (error) {
+    Pop.meow(error);
+  }
+}
 </script>
 
 
@@ -15,12 +30,11 @@ const account = computed(() => AppState.account)
   <section class="row justify-content-center">
     <div class="col-md-6 shadow my-3 rounded">
       <div class="m-5">
-        <h4 v-if="account?.id == postProp.creatorId" class="text-end">...</h4>
+        <h4 @click="deletePost()" v-if="account?.id == postProp.creatorId" class="text-end" role="button"><i
+            class="mdi mdi-delete"></i></h4>
         <router-link :to="{ name: 'Profile', params: { profileId: postProp.creatorId } }">
           <img :src="postProp.creator.picture" :alt="postProp.creator.name" class="creator-img">
           <span class="ms-3">{{ postProp.creator.name }}</span>
-
-          <h4></h4>
         </router-link>
       </div>
       <p class="ms-5">{{ postProp.createdAt.toLocaleDateString() }}</p>

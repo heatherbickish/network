@@ -26,5 +26,14 @@ class PostsService {
     const post = new Post(response.data)
     AppState.posts.unshift(post)
   }
+
+  async deletePost(postId) {
+    const response = await api.delete(`api/posts/${postId}`)
+    const postIndex = AppState.posts.findIndex(post => post.id == postId)
+    if (postIndex == -1) {
+      throw new Error('you messed up on find index sucka')
+    }
+    AppState.posts.splice(postIndex, 1)
+  }
 }
 export const postsService = new PostsService()

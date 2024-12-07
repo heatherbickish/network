@@ -22,13 +22,14 @@ const editableAccountFormData = ref({
   <section class="container">
     <form class="row g-4 bg-white p-4 rounded shadow my-3">
       <div class="col-md-4">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control">
+      </div>
+      <div class="col-md-4">
         <label for="picture">Profile image url</label>
         <input type="url" id="picture" class="form-control">
       </div>
-      <div class="col-md-4">
-        <label for="class">Attending class</label>
-        <input type="url" id="class" class="form-control">
-      </div>
+
       <div class="col-md-4 ">
         <div class="">
           <label for="graduated" class="d-inline me-3">Graduated</label>
@@ -48,6 +49,10 @@ const editableAccountFormData = ref({
         <input type="url" id="resume" class="form-control">
       </div>
       <div class="col-md-4">
+        <label for="class">Attending class</label>
+        <input type="url" id="class" class="form-control">
+      </div>
+      <div class="col-md-4">
         <label for="coverImg">Cover image url</label>
         <input type="url" id="coverImg" class="form-control">
       </div>
@@ -56,7 +61,7 @@ const editableAccountFormData = ref({
         <textarea id="bio" class="form-control" maxlength="1000" style="width: 100%;" rows="3"></textarea>
       </div>
       <div class="text-end">
-        <button class="btn btn-outline-info">Submit Changes</button>
+        <button class="btn btn-outline-info" type="submit">Submit Changes</button>
       </div>
     </form>
   </section>

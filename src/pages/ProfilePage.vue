@@ -79,7 +79,9 @@ async function changePage(pageNumber) {
         <p class="p-3 mb-3">{{ profile.bio }}</p>
         <p></p>
         <div class="text-end mb-3 me-3">
-          <button class="btn btn-outline-info">Edit</button>
+          <router-link :to="{ name: 'Account' }">
+            <button class="btn btn-outline-info">Edit</button>
+          </router-link>
         </div>
       </div>
     </div>

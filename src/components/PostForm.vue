@@ -15,6 +15,10 @@ const editablePostFormData = ref({
 async function createPost() {
   try {
     await postsService.createPost(editablePostFormData.value)
+    editablePostFormData.value = {
+      body: '',
+      imgUrl: ''
+    }
   }
   catch (error) {
     Pop.meow(error);

@@ -33,7 +33,7 @@ async function deletePost() {
         <h4 @click="deletePost()" v-if="account?.id == postProp.creatorId" class="text-end" role="button"><i
             class="mdi mdi-delete"></i></h4>
         <router-link :to="{ name: 'Profile', params: { profileId: postProp.creatorId } }">
-          <img :src="postProp.creator.picture" :alt="postProp.creator.name" class="creator-img">
+          <img :src="postProp.creator.picture" class="creator-img">
           <span class="ms-3">{{ postProp.creator.name }}</span>
         </router-link>
       </div>

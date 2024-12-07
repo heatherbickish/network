@@ -13,6 +13,7 @@ const profile = computed(() => AppState.activeProfile)
 const posts = computed(() => AppState.posts)
 const currentPage = computed(() => AppState.currentPage)
 const totalPages = computed(() => AppState.totalPages)
+const account = computed(() => AppState.account)
 
 onMounted(() => {
   getProfileById()
@@ -80,7 +81,7 @@ async function changePage(pageNumber) {
         <p></p>
         <div class="text-end mb-3 me-3">
           <router-link :to="{ name: 'Account' }">
-            <button class="btn btn-outline-info">Edit</button>
+            <button v-if="profile?.id == account.id" class="btn btn-outline-info">Edit</button>
           </router-link>
         </div>
       </div>

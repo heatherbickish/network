@@ -4,6 +4,11 @@ import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class AccountService {
+  async updateAccount(accountData) {
+    const response = await api.put('/account', accountData)
+    logger.log('updated account!!', response.data)
+    AppState.account = new Account(response.data)
+  }
   async getAccount() {
     try {
       const res = await api.get('/account')
@@ -12,6 +17,8 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+
+
 }
 
 export const accountService = new AccountService()

@@ -4,11 +4,16 @@ import Posts from "@/components/Posts.vue";
 import { postsService } from "@/services/PostsService";
 import { logger } from "@/utils/Logger";
 import Pop from "@/utils/Pop";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+
+
+const posts = computed(() => AppState.posts)
 
 const editableSearchQuery = ref('')
 
-const posts = computed(() => AppState.posts)
+onMounted(() => {
+  postsService.clearPosts()
+})
 
 async function searchPosts() {
   try {
@@ -19,6 +24,7 @@ async function searchPosts() {
     logger.error('searching posts', error)
   }
 }
+
 </script>
 
 

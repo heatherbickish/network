@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from "@/AppState";
 import Posts from "@/components/Posts.vue";
+import { postsService } from "@/services/PostsService";
 import { profilesService } from "@/services/ProfilesService";
 import Pop from "@/utils/Pop";
 import { computed, onMounted } from "vue";
@@ -9,6 +10,8 @@ import { useRoute } from "vue-router";
 const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
 const posts = computed(() => AppState.posts)
+const currentPage = computed(() => AppState.currentPage)
+const totalPages = computed(() => AppState.totalPages)
 
 onMounted(() => {
   getProfileById()
@@ -29,6 +32,15 @@ async function getPostsByCreatorId() {
   try {
     const profileId = route.params.profileId
     await profilesService.getPostsByCreatorId(profileId)
+  }
+  catch (error) {
+    Pop.meow(error);
+  }
+}
+
+async function changePage(pageNumber) {
+  try {
+    await postsService.changePage(pageNumber)
   }
   catch (error) {
     Pop.meow(error);
@@ -89,6 +101,17 @@ async function getPostsByCreatorId() {
       </div>
     </div> -->
   </section>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+      <div class="text-center mb-2">
+        <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5" type="button"
+          :disabled="currentPage == 1">Older</button>
+        <span></span>
+        <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5" type="button"
+          :disabled="currentPage == 1">Newer</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 

@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from "@/AppState";
 import MoneyCard from "@/components/MoneyCard.vue";
+import PostForm from "@/components/PostForm.vue";
 import Posts from "@/components/Posts.vue";
 import { moneyService } from "@/services/MoneyService";
 import { postsService } from "@/services/PostsService";
@@ -50,10 +51,12 @@ async function changePage(pageNumber) {
 </script>
 
 <template>
+  <PostForm />
   <div class="row justify-content-center mt-3">
     <div class="col-md-6">
       <div class="text-center mb-2">
-        <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5">Older</button>
+        <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5" type="button"
+          :disabled="currentPage == 1">Older</button>
         <span></span>
         <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5">Newer</button>
       </div>

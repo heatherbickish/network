@@ -75,7 +75,7 @@ async function deletePost() {
 
 .post-img {
   height: 30dvh;
-  width: 60dvh;
+  width: auto;
   object-fit: cover;
 }
 </style>

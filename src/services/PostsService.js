@@ -18,13 +18,22 @@ class PostsService {
     AppState.totalPages = response.data.totalPages
   }
 
-  async changePage(pageNumber) {
+  async changeHomePage(pageNumber) {
     const response = await api.get(`api/posts?page=${pageNumber}`)
     const posts = response.data.posts.map(postPojo => new Post(postPojo))
     AppState.posts = posts
     AppState.currentPage = response.data.page
     AppState.totalPages = response.data.totalPages
   }
+
+  async changeProfilePage(pageNumber, searchQuery) {
+    const response = await api.get(`api/posts?page=${searchQuery}&page=${pageNumber}`)
+    const posts = response.data.posts.map(postPojo => new Post(postPojo))
+    AppState.posts = posts
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
+  }
+
 
   async createPost(editablePostFormData) {
     const response = await api.post('api/posts', editablePostFormData)

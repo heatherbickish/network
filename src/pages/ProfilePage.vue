@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from "@/AppState";
+import PageNav from "@/components/PageNav.vue";
 import PostForm from "@/components/PostForm.vue";
 import Posts from "@/components/Posts.vue";
 import { postsService } from "@/services/PostsService";
@@ -41,14 +42,14 @@ async function getPostsByCreatorId() {
   }
 }
 
-async function changePage(pageNumber) {
-  try {
-    await postsService.changePage(pageNumber)
-  }
-  catch (error) {
-    Pop.meow(error);
-  }
-}
+// async function changePage(pageNumber) {
+//   try {
+//     await postsService.changeHomePage(pageNumber)
+//   }
+//   catch (error) {
+//     Pop.meow(error);
+//   }
+// }
 
 
 </script>
@@ -98,13 +99,14 @@ async function changePage(pageNumber) {
   </section>
   <div class="row justify-content-center mt-3">
     <div class="col-md-6">
-      <div class="text-center mb-2">
+      <PageNav />
+      <!-- <div class="text-center mb-2">
         <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5" type="button"
           :disabled="currentPage == 1">Newer</button>
         <span></span>
         <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5" type="button"
           :disabled="currentPage == 1">Older</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

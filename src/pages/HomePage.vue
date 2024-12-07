@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from "@/AppState";
 import MoneyCard from "@/components/MoneyCard.vue";
+import PageNav from "@/components/PageNav.vue";
 import PostForm from "@/components/PostForm.vue";
 import Posts from "@/components/Posts.vue";
 import { moneyService } from "@/services/MoneyService";
@@ -17,8 +18,7 @@ onMounted(() => {
 
 const posts = computed(() => AppState.posts)
 const moneyPics = computed(() => AppState.moneyPics)
-const currentPage = computed(() => AppState.currentPage)
-const totalPages = computed(() => AppState.totalPages)
+
 
 async function getAllPosts() {
   try {
@@ -39,14 +39,7 @@ async function getAds() {
   }
 }
 
-async function changePage(pageNumber) {
-  try {
-    await postsService.changePage(pageNumber)
-  }
-  catch (error) {
-    Pop.meow(error);
-  }
-}
+
 
 </script>
 
@@ -54,12 +47,13 @@ async function changePage(pageNumber) {
   <PostForm />
   <div class="row justify-content-center mt-3">
     <div class="col-md-6">
-      <div class="text-center mb-2">
+      <PageNav />
+      <!-- <div class="text-center mb-2">
         <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5" type="button"
           :disabled="currentPage == 1">Newer</button>
         <span></span>
         <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5">Older</button>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="container">

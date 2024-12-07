@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from "@/AppState";
+import PostForm from "@/components/PostForm.vue";
 import Posts from "@/components/Posts.vue";
 import { postsService } from "@/services/PostsService";
 import { profilesService } from "@/services/ProfilesService";
@@ -83,23 +84,11 @@ async function changePage(pageNumber) {
       </div>
     </div>
   </section>
+  <section>
+    <!-- <PostForm /> -->
+  </section>
   <section v-for="post in posts" :key="post.id" class="row justify-content-center">
     <Posts :postProp="post" />
-    <!-- <div class="col-md-6 shadow my-3 rounded">
-
-      <div class="m-5">
-        <img src="" alt="" class="creator-img">
-        <span class="ms-3"></span>
-      </div>
-      <p class="ms-5"></p>
-      <p class="ms-5"></p>
-      <div class="d-flex justify-content-center">
-        <img src="" alt="" class="post-img">
-      </div>
-      <div>
-        <p class="text-end text-info mdi mdi-heart me-5 mt-2"></p>
-      </div>
-    </div> -->
   </section>
   <div class="row justify-content-center mt-3">
     <div class="col-md-6">

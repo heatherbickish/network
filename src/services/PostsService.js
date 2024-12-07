@@ -21,5 +21,10 @@ class PostsService {
     AppState.totalPages = response.data.totalPages
   }
 
+  async createPost(editablePostFormData) {
+    const response = await api.post('api/posts', editablePostFormData)
+    const post = new Post(response.data)
+    AppState.posts.unshift(post)
+  }
 }
 export const postsService = new PostsService()

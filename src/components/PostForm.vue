@@ -29,7 +29,7 @@ async function createPost() {
 
 <template>
   <section class="row justify-content-center">
-    <div v-if="account != null" class="col-md-6 shadow rounded">
+    <div v-if="account != null" class="col-md-6 shadow rounded mt-3">
       <div>
         <img :src="account.picture" alt="" class="creator-img m-3">
         <form @submit.prevent="createPost()">

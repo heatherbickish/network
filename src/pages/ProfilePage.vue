@@ -18,6 +18,7 @@ const account = computed(() => AppState.account)
 onMounted(() => {
   getProfileById()
   getPostsByCreatorId()
+  profilesService.clearPage()
 })
 
 async function getProfileById() {
@@ -48,18 +49,20 @@ async function changePage(pageNumber) {
     Pop.meow(error);
   }
 }
+
+
 </script>
 
 
 <template>
   <section v-if="profile" class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6 rounded shadow">
+      <div class="col-md-6 rounded shadow mt-3">
         <img :src="profile.coverImg" alt="" class="hero img-fluid">
         <div class="m-5">
           <img :src="profile.picture" class="creator-img ms-3">
           <div>
-            <i v-if="profile.graduated" class="mdi mdi-school fs-3"></i>
+            <i v-if="profile.graduated" class="mdi mdi-school fs-3 text-success"></i>
           </div>
           <div class="ms-3 mt-3">
             <h6>{{ profile.class }}</h6>
@@ -87,8 +90,8 @@ async function changePage(pageNumber) {
       </div>
     </div>
   </section>
-  <section>
-    <!-- <PostForm /> -->
+  <section v-if="account.id == profile?.id">
+    <PostForm />
   </section>
   <section v-for="post in posts" :key="post.id" class="row justify-content-center">
     <Posts :postProp="post" />
@@ -97,10 +100,10 @@ async function changePage(pageNumber) {
     <div class="col-md-6">
       <div class="text-center mb-2">
         <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5" type="button"
-          :disabled="currentPage == 1">Older</button>
+          :disabled="currentPage == 1">Newer</button>
         <span></span>
         <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5" type="button"
-          :disabled="currentPage == 1">Newer</button>
+          :disabled="currentPage == 1">Older</button>
       </div>
     </div>
   </div>
@@ -122,9 +125,13 @@ async function changePage(pageNumber) {
 }
 
 .hero {
-  height: 10dvh;
-  width: 80dvh;
+  width: 100%;
+  height: 200px;
   object-fit: cover;
+  object-position: center;
+  margin-bottom: -150px;
+  margin-top: 20px;
+  border-radius: 12px;
 
 }
 </style>

@@ -4,13 +4,27 @@ import { Post } from "@/models/Post";
 import { postsService } from "@/services/PostsService";
 import { logger } from "@/utils/Logger";
 import Pop from "@/utils/Pop";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 
 const props = defineProps({
   postProp: { type: Post, required: true }
 })
 
 const account = computed(() => AppState.account)
+
+// onMounted(() => {
+//   getLikes()
+// })
+
+// async function getLikes() {
+//   try {
+//     // const likeId = props.postProp.likeId
+//     await postsService.getLikes()
+//   }
+//   catch (error) {
+//     Pop.meow(error);
+//   }
+// }
 
 async function deletePost() {
   try {

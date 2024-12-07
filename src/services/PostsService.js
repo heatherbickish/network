@@ -2,9 +2,12 @@ import { logger } from "@/utils/Logger.js"
 import { api } from "./AxiosService.js"
 import { Post } from "@/models/Post.js"
 import { AppState } from "@/AppState.js"
-import lookup from "socket.io-client"
 
 class PostsService {
+  // async getLikes() {
+  //   const response = await api.post('api/posts/:likeId/like')
+  //   logger.log(response.data)
+  // }
 
 
   async getAllPosts() {

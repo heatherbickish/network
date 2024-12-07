@@ -6,7 +6,7 @@ import Pop from "@/utils/Pop";
 import { computed, ref } from "vue";
 
 const account = computed(() => AppState.account)
-
+const activeProfile = computed(() => AppState.activeProfile)
 const editablePostFormData = ref({
   body: '',
   imgUrl: ''
@@ -31,11 +31,13 @@ async function createPost() {
   <section class="row justify-content-center">
     <div v-if="account != null" class="col-md-6 shadow rounded mt-3">
       <div>
-        <img :src="account.picture" alt="" class="creator-img m-3">
+        <router-link :to="{ name: 'Profile', params: { profileId: account.id } }">
+          <img :src="account.picture" alt="" class="creator-img m-3">
+        </router-link>
         <form @submit.prevent="createPost()">
           <div class="form-floating mb-3">
             <textarea v-model="editablePostFormData.body" id="body" class="form-control" maxlength="1000"
-              style="width: 100;" required></textarea>
+              style="width: 100%;" required></textarea>
             <label for="floatingInput">Share whats happening...</label>
           </div>
           <div class="form-floating">

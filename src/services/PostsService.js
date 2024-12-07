@@ -5,6 +5,7 @@ import { AppState } from "@/AppState.js"
 import lookup from "socket.io-client"
 
 class PostsService {
+
   async getAllPosts() {
     const response = await api.get('api/posts')
     const posts = response.data.posts.map(postPojo => new Post(postPojo))
@@ -34,6 +35,13 @@ class PostsService {
       throw new Error('you messed up on find index sucka')
     }
     AppState.posts.splice(postIndex, 1)
+  }
+
+  async searchPosts(searchQuery) {
+    const response = await api.get(`api/posts?query=${searchQuery}`)
+    const posts = response.data.posts.map(postPojo => new Post(postPojo))
+    AppState.posts = posts
+    logger.log(posts)
   }
 }
 export const postsService = new PostsService()

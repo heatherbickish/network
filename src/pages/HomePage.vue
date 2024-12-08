@@ -39,21 +39,20 @@ async function getAds() {
   }
 }
 
-
-
 </script>
 
 <template>
+  <div>
+    <div v-for="moneyPic in moneyPics" :key="moneyPic.linkUrl" class="row">
+      <div class="d-flex">
+        <img :src="moneyPic.square" alt="" class="money-pic">
+      </div>
+    </div>
+  </div>
   <PostForm />
   <div class="row justify-content-center mt-3">
     <div class="col-md-6">
       <PageNav />
-      <!-- <div class="text-center mb-2">
-        <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5" type="button"
-          :disabled="currentPage == 1">Newer</button>
-        <span></span>
-        <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5">Older</button>
-      </div> -->
     </div>
   </div>
   <div class="container">
@@ -61,16 +60,16 @@ async function getAds() {
       <div v-for="post in posts" :key="post.id" class="col-12">
         <Posts :postProp="post" />
       </div>
-      <div class="row">
-        <div v-for="moneyPic in moneyPics" :key="moneyPic.linkUrl" class="col-md-3">
-          <MoneyCard :moneyProp="moneyPic" />
-        </div>
-
-
-      </div>
     </section>
+
   </div>
 
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.money-pic {
+  height: 300px;
+  width: 200px;
+  margin-bottom: 100px;
+}
+</style>

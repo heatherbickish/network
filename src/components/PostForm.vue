@@ -6,7 +6,6 @@ import Pop from "@/utils/Pop";
 import { computed, ref } from "vue";
 
 const account = computed(() => AppState.account)
-const activeProfile = computed(() => AppState.activeProfile)
 const editablePostFormData = ref({
   body: '',
   imgUrl: ''

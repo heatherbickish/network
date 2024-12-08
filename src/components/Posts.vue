@@ -12,19 +12,20 @@ const props = defineProps({
 
 const account = computed(() => AppState.account)
 
-// onMounted(() => {
-//   getLikes()
-// })
+onMounted(() => {
+  getLikes()
+})
 
-// async function getLikes() {
-//   try {
-//     // const likeId = props.postProp.likeId
-//     await postsService.getLikes()
-//   }
-//   catch (error) {
-//     Pop.meow(error);
-//   }
-// }
+async function getLikes() {
+  try {
+    const likes = props.postProp.likes
+    // logger.log('theeeese', likes)
+    await postsService.getLikes(likes)
+  }
+  catch (error) {
+    Pop.meow(error);
+  }
+}
 
 async function deletePost() {
   try {
@@ -60,8 +61,8 @@ async function deletePost() {
         <p class="text-end text-info mdi mdi-heart me-5 mt-2"></p>
       </div>
     </div>
-
   </section>
+
 </template>
 
 

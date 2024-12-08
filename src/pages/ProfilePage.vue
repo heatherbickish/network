@@ -1,12 +1,15 @@
 <script setup>
 import { AppState } from "@/AppState";
+import MoneyCard from "@/components/MoneyCard.vue";
 import PageNav from "@/components/PageNav.vue";
 import PostForm from "@/components/PostForm.vue";
 import Posts from "@/components/Posts.vue";
+import { moneyService } from "@/services/MoneyService";
 import { postsService } from "@/services/PostsService";
 import { profilesService } from "@/services/ProfilesService";
+import { logger } from "@/utils/Logger";
 import Pop from "@/utils/Pop";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute()
@@ -15,10 +18,12 @@ const posts = computed(() => AppState.posts)
 const currentPage = computed(() => AppState.currentPage)
 const totalPages = computed(() => AppState.totalPages)
 const account = computed(() => AppState.account)
+const moneyPics = computed(() => AppState.moneyPics)
 
 onMounted(() => {
   getProfileById()
   getPostsByCreatorId()
+  getAds()
   profilesService.clearPage()
 })
 
@@ -42,20 +47,29 @@ async function getPostsByCreatorId() {
   }
 }
 
-// async function changePage(pageNumber) {
-//   try {
-//     await postsService.changeHomePage(pageNumber)
-//   }
-//   catch (error) {
-//     Pop.meow(error);
-//   }
-// }
 
+async function getAds() {
+  try {
+    logger.log('getting ads')
+
+    await moneyService.getAds()
+  }
+  catch (error) {
+    Pop.meow(error);
+  }
+}
 
 </script>
 
 
 <template>
+  <div v-for="moneyPic in moneyPics" :key="moneyPic.linkUrl" class="row justify-content-end">
+    <div class="col-md-2">
+      <div class="">
+        <img :src="moneyPic.square" alt="" class="money-pic">
+      </div>
+    </div>
+  </div>
   <section v-if="profile" class="container">
     <div class="row justify-content-center">
       <div class="col-md-6 rounded shadow mt-3">
@@ -100,13 +114,6 @@ async function getPostsByCreatorId() {
   <div class="row justify-content-center mt-3">
     <div class="col-md-6">
       <PageNav />
-      <!-- <div class="text-center mb-2">
-        <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5" type="button"
-          :disabled="currentPage == 1">Newer</button>
-        <span></span>
-        <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5" type="button"
-          :disabled="currentPage == 1">Older</button>
-      </div> -->
     </div>
   </div>
 </template>
@@ -134,6 +141,13 @@ async function getPostsByCreatorId() {
   margin-bottom: -150px;
   margin-top: 20px;
   border-radius: 12px;
+}
 
+.money-pic {
+  height: 300px;
+  width: 200px;
+  margin-bottom: 100px;
+  margin-top: 20px;
+  margin-right: 50px;
 }
 </style>

@@ -8,7 +8,7 @@ class MoneyService {
     const response = await api.get('api/ads')
     const ads = response.data.map(adPojo => new Money(adPojo))
     AppState.moneyPics = ads
-    // logger.log(ads)
+    logger.log(ads, 'got ads')
   }
 
 }

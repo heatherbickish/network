@@ -60,7 +60,9 @@ async function getAds() {
 
 
 <template>
-
+  <div class="ms-4 mt-3 text-info">
+    <h1>Profile</h1>
+  </div>
   <section v-if="profile" class="container">
     <div class="row justify-content-center">
       <div class="col-md-6 rounded shadow mt-3">
@@ -90,13 +92,13 @@ async function getAds() {
         <p></p>
         <div class="text-end mb-3 me-3">
           <router-link :to="{ name: 'Account' }">
-            <button v-if="profile?.id == account.id" class="btn btn-outline-info">Edit</button>
+            <button v-if="account.id == profile.id" class="btn btn-outline-info">Edit</button>
           </router-link>
         </div>
       </div>
     </div>
   </section>
-  <section v-if="account.id == profile?.id">
+  <section v-if="profile?.id == account.id">
     <PostForm />
   </section>
   <section v-for="post in posts" :key="post.id" class="row justify-content-center">

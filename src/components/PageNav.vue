@@ -18,7 +18,8 @@ async function changePage(pageNumber) {
   try {
     if (route.name == 'Home') {
       await postsService.changeHomePage(pageNumber)
-    } else {
+    }
+    else {
       await postsService.changeProfilePage(pageNumber, props.searchQueryProp)
     }
   }
@@ -32,10 +33,10 @@ async function changePage(pageNumber) {
 <template>
   <div class="text-center mb-2">
     <button @click="changePage(currentPage - 1)" class="btn btn-outline-info me-5" type="button"
-      :disabled="currentPage == 1">Newer</button>
+      :disabled="currentPage < 2">Newer</button>
     <span></span>
     <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5" type="button"
-      :disabled="currentPage == 2">Older</button>
+      :disabled="currentPage == totalPages">Older</button>
   </div>
 </template>
 

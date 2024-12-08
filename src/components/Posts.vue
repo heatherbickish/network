@@ -12,7 +12,6 @@ const props = defineProps({
 const account = computed(() => AppState.account)
 
 
-
 async function getLikes(id) {
   try {
     await postsService.getLikes(id)
@@ -22,14 +21,6 @@ async function getLikes(id) {
   }
 }
 
-async function dontLike(id) {
-  try {
-    await postsService.dontLike(id)
-  }
-  catch (error) {
-    Pop.meow(error);
-  }
-}
 
 async function deletePost() {
   try {
@@ -61,15 +52,10 @@ async function deletePost() {
       <div class="d-flex justify-content-center">
         <img :src="postProp.imgUrl" alt="" class="post-img">
       </div>
-      <div class="my-3">
+      <div class="m-3 text-end">
         <button v-if="account" @click="getLikes(postProp.id)" class="btn btn-outline-none"><i
-            class="mdi mdi-thumb-up text-info"></i></button>
+            class="mdi mdi-heart text-info"></i></button>
         <span>{{ postProp.likes.length }}</span>
-        <button v-if="account" @click="dontLike(postProp.id)" class="btn btn-outline-none"><i
-            class="mdi mdi-thumb-down text-info"></i></button>
-        <!-- <span :disabled="postProp.creatorId == account.id" class="text-end text-info mdi mdi-heart me-5 mt-2"
-          role="button">{{
-            postProp.likes.length }}</span> -->
       </div>
     </div>
   </section>

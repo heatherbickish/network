@@ -6,7 +6,6 @@ import { api } from './AxiosService.js'
 class AccountService {
   async updateAccount(accountData) {
     const response = await api.put('/account', accountData)
-    logger.log('updated account!!', response.data)
     AppState.account = new Account(response.data)
   }
   async getAccount() {

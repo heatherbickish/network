@@ -41,7 +41,8 @@ async function getAds() {
 </script>
 
 <template>
-  <div>
+  <div class="ms-4 mt-3 text-info">
+    <h1>Home</h1>
   </div>
   <PostForm />
   <div class="container">

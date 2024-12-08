@@ -4,14 +4,9 @@ import { Post } from "@/models/Post.js"
 import { AppState } from "@/AppState.js"
 
 class PostsService {
-  async dontLike(id) {
-    let response = await api.post(`api/posts/${id}/like`)
-    response.data.id -= 1
-    logger.log(response.data)
-  }
+
   async getLikes(id) {
-    let response = await api.post(`api/posts/${id}/like`)
-    response.data.id += 1
+    const response = await api.post(`api/posts/${id}/like`)
     logger.log(response.data)
   }
 
@@ -64,6 +59,8 @@ class PostsService {
 
   clearPosts() {
     AppState.posts = null
+    AppState.currentPage = 0
+    AppState.totalPages = 0
   }
 }
 export const postsService = new PostsService()

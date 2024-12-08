@@ -1,6 +1,5 @@
 <script setup>
 import { AppState } from "@/AppState";
-import MoneyCard from "@/components/MoneyCard.vue";
 import PageNav from "@/components/PageNav.vue";
 import PostForm from "@/components/PostForm.vue";
 import Posts from "@/components/Posts.vue";
@@ -61,13 +60,7 @@ async function getAds() {
 
 
 <template>
-  <div v-for="moneyPic in moneyPics" :key="moneyPic.linkUrl" class="row justify-content-end">
-    <div class="col-md-2">
-      <div class="">
-        <img :src="moneyPic.square" alt="" class="money-pic">
-      </div>
-    </div>
-  </div>
+
   <section v-if="profile" class="container">
     <div class="row justify-content-center">
       <div class="col-md-6 rounded shadow mt-3">
@@ -112,6 +105,13 @@ async function getAds() {
   <div class="row justify-content-center mt-3">
     <div class="col-md-6">
       <PageNav />
+    </div>
+  </div>
+  <div v-for="moneyPic in moneyPics" :key="moneyPic.linkUrl" class="row justify-content-end">
+    <div class="col-md-2">
+      <div class="">
+        <img :src="moneyPic.square" alt="" class="money-pic">
+      </div>
     </div>
   </div>
 </template>

@@ -35,7 +35,7 @@ async function changePage(pageNumber) {
       :disabled="currentPage == 1">Newer</button>
     <span></span>
     <button @click="changePage(currentPage + 1)" class="btn btn-outline-info ms-5" type="button"
-      :disabled="currentPage == 1">Older</button>
+      :disabled="currentPage == 2">Older</button>
   </div>
 </template>
 

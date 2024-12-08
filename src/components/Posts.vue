@@ -2,7 +2,6 @@
 import { AppState } from "@/AppState";
 import { Post } from "@/models/Post";
 import { postsService } from "@/services/PostsService";
-import { logger } from "@/utils/Logger";
 import Pop from "@/utils/Pop";
 import { computed, onMounted } from "vue";
 
@@ -17,6 +16,15 @@ const account = computed(() => AppState.account)
 async function getLikes(id) {
   try {
     await postsService.getLikes(id)
+  }
+  catch (error) {
+    Pop.meow(error);
+  }
+}
+
+async function dontLike(id) {
+  try {
+    await postsService.dontLike(id)
   }
   catch (error) {
     Pop.meow(error);
@@ -53,10 +61,15 @@ async function deletePost() {
       <div class="d-flex justify-content-center">
         <img :src="postProp.imgUrl" alt="" class="post-img">
       </div>
-      <div>
-        <p v-if="account" @click="getLikes(postProp.id)" class="text-end text-info mdi mdi-heart me-5 mt-2"
+      <div class="my-3">
+        <button v-if="account" @click="getLikes(postProp.id)" class="btn btn-outline-none"><i
+            class="mdi mdi-thumb-up text-info"></i></button>
+        <span>{{ postProp.likes.length }}</span>
+        <button v-if="account" @click="dontLike(postProp.id)" class="btn btn-outline-none"><i
+            class="mdi mdi-thumb-down text-info"></i></button>
+        <!-- <span :disabled="postProp.creatorId == account.id" class="text-end text-info mdi mdi-heart me-5 mt-2"
           role="button">{{
-            postProp.likes.length }}</p>
+            postProp.likes.length }}</span> -->
       </div>
     </div>
   </section>

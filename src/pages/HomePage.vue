@@ -1,6 +1,5 @@
 <script setup>
 import { AppState } from "@/AppState";
-import MoneyCard from "@/components/MoneyCard.vue";
 import PageNav from "@/components/PageNav.vue";
 import PostForm from "@/components/PostForm.vue";
 import Posts from "@/components/Posts.vue";
@@ -43,18 +42,8 @@ async function getAds() {
 
 <template>
   <div>
-    <div v-for="moneyPic in moneyPics" :key="moneyPic.linkUrl" class="row">
-      <div class="d-flex">
-        <img :src="moneyPic.square" alt="" class="money-pic">
-      </div>
-    </div>
   </div>
   <PostForm />
-  <div class="row justify-content-center mt-3">
-    <div class="col-md-6">
-      <PageNav />
-    </div>
-  </div>
   <div class="container">
     <section class="row">
       <div v-for="post in posts" :key="post.id" class="col-12">
@@ -62,6 +51,16 @@ async function getAds() {
       </div>
     </section>
 
+    <div class="row justify-content-center mt-3">
+      <div class="col-md-6">
+        <PageNav />
+      </div>
+    </div>
+    <div v-for="moneyPic in moneyPics" :key="moneyPic.linkUrl" class="row">
+      <div class="d-flex">
+        <img :src="moneyPic.square" alt="" class="money-pic">
+      </div>
+    </div>
   </div>
 
 </template>

@@ -4,10 +4,15 @@ import { Post } from "@/models/Post.js"
 import { AppState } from "@/AppState.js"
 
 class PostsService {
+  async dontLike(id) {
+    let response = await api.post(`api/posts/${id}/like`)
+    response.data.id -= 1
+    logger.log(response.data)
+  }
   async getLikes(id) {
     let response = await api.post(`api/posts/${id}/like`)
+    response.data.id += 1
     logger.log(response.data)
-    response.data.id++
   }
 
 

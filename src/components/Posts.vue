@@ -3,14 +3,13 @@ import { AppState } from "@/AppState";
 import { Post } from "@/models/Post";
 import { postsService } from "@/services/PostsService";
 import Pop from "@/utils/Pop";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 
 const props = defineProps({
   postProp: { type: Post, required: true }
 })
 
 const account = computed(() => AppState.account)
-
 
 async function getLikes(id) {
   try {

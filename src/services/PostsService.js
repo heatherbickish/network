@@ -4,9 +4,10 @@ import { Post } from "@/models/Post.js"
 import { AppState } from "@/AppState.js"
 
 class PostsService {
-  async getLikes(likes) {
-    // logger.log('got likes', likes)
-    // const response = await api.post(`api/posts/${likes}/like`)
+  async getLikes(id) {
+    let response = await api.post(`api/posts/${id}/like`)
+    logger.log(response.data)
+    response.data.id++
   }
 
 

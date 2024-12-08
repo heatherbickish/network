@@ -12,15 +12,11 @@ const props = defineProps({
 
 const account = computed(() => AppState.account)
 
-onMounted(() => {
-  getLikes()
-})
 
-async function getLikes() {
+
+async function getLikes(id) {
   try {
-    const likes = props.postProp.likes
-    // logger.log('theeeese', likes)
-    await postsService.getLikes(likes)
+    await postsService.getLikes(id)
   }
   catch (error) {
     Pop.meow(error);
@@ -58,7 +54,9 @@ async function deletePost() {
         <img :src="postProp.imgUrl" alt="" class="post-img">
       </div>
       <div>
-        <p class="text-end text-info mdi mdi-heart me-5 mt-2"></p>
+        <p v-if="account" @click="getLikes(postProp.id)" class="text-end text-info mdi mdi-heart me-5 mt-2"
+          role="button">{{
+            postProp.likes.length }}</p>
       </div>
     </div>
   </section>

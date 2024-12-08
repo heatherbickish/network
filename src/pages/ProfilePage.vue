@@ -50,8 +50,6 @@ async function getPostsByCreatorId() {
 
 async function getAds() {
   try {
-    logger.log('getting ads')
-
     await moneyService.getAds()
   }
   catch (error) {

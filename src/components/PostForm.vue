@@ -1,7 +1,6 @@
 <script setup>
 import { AppState } from "@/AppState";
 import { postsService } from "@/services/PostsService";
-import { logger } from "@/utils/Logger";
 import Pop from "@/utils/Pop";
 import { computed, ref } from "vue";
 
